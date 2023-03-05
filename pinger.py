@@ -37,7 +37,7 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         whatReady = select.select([mySocket], [], [], timeLeft) 
         howLongInSelect = (time.time() - startedSelect)
         if whatReady[0] == []: # Timeout
-            return "Request timed out. Array Empty." 
+            return "Request timed out." 
     
         timeReceived = time.time()
         recPacket, addr = mySocket.recvfrom(1024)
@@ -54,7 +54,7 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
 
         timeLeft = timeLeft - howLongInSelect 
         if timeLeft <= 0:
-            return "Request timed out. Too long."
+            return "Request timed out."
 
 def sendOnePing(mySocket, destAddr, ID):
     # Header is type (8), code (8), checksum (16), id (16), sequence (16)
@@ -103,4 +103,4 @@ def ping(host, timeout=1):
         time.sleep(1)# one second 
     return delay
 
-ping("127.0.0.1")
+ping("168.96.251.197", 2)
